@@ -7,7 +7,8 @@ const WebpackBar = require('webpackbar')
 
 const babelRc = require(path.resolve(process.cwd(), 'babel.config'))
 // const { devtool } = require('../webpack.config')
- const getConfig =  mode => {
+const getConfig = (mode, target = 'web') => {
+  const isNode = target === 'node';
   const isDev = mode === 'dev';
   const isProd = !isDev;
   const config = {
@@ -15,10 +16,10 @@ const babelRc = require(path.resolve(process.cwd(), 'babel.config'))
     devtool: isProd ? "source-map" : "cheap-module-source-map",
     // context: process.cwd(),
     output: {
-      filename: 'main.js',
+      filename: 'static/main.js',
       path: path.resolve(process.cwd(), 'build')
     },
-    entry: path.resolve(process.cwd(), 'src/index'),
+    entry: path.resolve(process.cwd(), 'src/client/index'),
     plugins: [
       isProd && new CleanWebpackPlugin(),
       isProd && new MiniCssPlugin({
