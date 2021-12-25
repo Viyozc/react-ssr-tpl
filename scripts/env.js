@@ -20,5 +20,6 @@ const config = dotenvFiles.reduce((last, file) => {
 
 module.exports = {
   PORT: config.PORT || '8080',
-  HOST: config.HOST || 'localhost'
+  HOST: config.HOST || 'localhost',
+  PUBLIC_PATH: config.PUBLIC_PATH  || `${config.HOST}:${config.PORT}`
 }
